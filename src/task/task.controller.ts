@@ -23,7 +23,7 @@ export class TaskController {
         return res.status(HttpStatus.OK).json(task);
     }
 
-    @Post("/post")
+    @Post("post")
     async addTask(@Res() res, @Body() createTaskDTO: CreateTaskDTO) {
         const newTask = await this.taskService.addTask(createTaskDTO);
         return res.status(HttpStatus.OK).json({
@@ -32,10 +32,10 @@ export class TaskController {
         })
     }
 
-    @Put('/edit')
+    @Put('edit/:taskID')
     async editTask(
         @Res() res,
-        @Query('taskID', new ValidateObjectId()) taskID,
+        @Param('taskID', new ValidateObjectId()) taskID,
         @Body() createTaskDTO: CreateTaskDTO
     ) {
         const editedTask = await this.taskService.editTask(taskID, createTaskDTO);
@@ -46,8 +46,8 @@ export class TaskController {
         })
     }
 
-    @Delete('/delete')
-    async deletePost(@Res() res, @Query('taskID', new ValidateObjectId()) taskID) {
+    @Delete('delete/:taskID')
+    async deletePost(@Res() res, @Param('taskID', new ValidateObjectId()) taskID) {
         const deletedTask = await this.taskService.deleteTask(taskID);
         if (!deletedTask) throw new NotFoundException('Task does not exist!');
         return res.status(HttpStatus.OK).json({
