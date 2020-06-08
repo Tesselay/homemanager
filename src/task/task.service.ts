@@ -35,5 +35,9 @@ export class TaskService {
         const deletedTask = await this.taskModel.findByIdAndRemove(taskId);
         return deletedTask;
     }
+
+    async deleteTasks() {
+        await this.taskModel.deleteMany({});
+    }
     
 }

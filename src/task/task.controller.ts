@@ -10,7 +10,7 @@ export class TaskController {
 
     constructor(private taskService: TaskService) {}
 
-    @Get("task")
+    @Get("")
     async getTasks(@Res() res) {
         const tasks = await this.taskService.getTasks();
         return res.status(HttpStatus.OK).json(tasks);
@@ -53,6 +53,14 @@ export class TaskController {
         return res.status(HttpStatus.OK).json({
             message: 'Task has been deleted!',
             task: deletedTask
+        })
+    }
+
+    @Delete('delete')
+    async deleteTasks(@Res() res) {
+        await this.taskService.deleteTasks();
+        return res.status(HttpStatus.OK).json({
+            message: 'All tasks have been deleted!'
         })
     }
 
