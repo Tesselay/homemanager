@@ -47,7 +47,7 @@ export class TaskController {
     }
 
     @Delete('delete/:taskID')
-    async deletePost(@Res() res, @Param('taskID', new ValidateObjectId()) taskID) {
+    async deleteTask(@Res() res, @Param('taskID', new ValidateObjectId()) taskID) {
         const deletedTask = await this.taskService.deleteTask(taskID);
         if (!deletedTask) throw new NotFoundException('Task does not exist!');
         return res.status(HttpStatus.OK).json({
