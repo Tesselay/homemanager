@@ -1,13 +1,19 @@
 import { Controller, Get, Res, HttpStatus, Param, NotFoundException, Post, Body, Put, Delete } from '@nestjs/common';
-import { TaskService } from "./task.service";
-import { CreateTaskDTO } from "./create-task.dto";
 import { ValidateObjectId } from "../shared/pipes/validate-object-id.pipes";
 
+import { TaskService } from "./task.service";
+import { CreateTaskDTO } from "./create-task.dto";
+
+import { FinishedService } from './finished/finished.service';
+import { CreateFinishedDTO } from "./finished/create-finished.dto";
 
 @Controller("tasks")
 export class TaskController {
 
-    constructor(private taskService: TaskService) {}
+    constructor(
+        private taskService: TaskService,
+        private finishedService: FinishedService,
+    ) {}
 
     @Get("")
     async getTasks(@Res() res) {
@@ -42,6 +48,20 @@ export class TaskController {
         return res.status(HttpStatus.OK).json({
             message: 'Task has been successfully updated',
             task: editedTask
+        })
+    }
+
+    @Put('finish/:taskID')
+    async finishTask(
+        @Res() res,
+        @Param('taskID', new ValidateObjectId()) taskID,
+        @Body() createFinishedDTO: CreateFinishedDTO
+    ) {
+        await this.finishedService.addFinished(createFinishedDTO);
+        const finishedTask = await this.taskService.deleteTask(taskID);
+        return res.status(HttpStatus.OK).json({
+            message: "Task has been finished succesfully!",
+            task: finishedTask
         })
     }
 

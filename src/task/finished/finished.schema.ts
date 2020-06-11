@@ -1,7 +1,8 @@
 import * as mongoose from 'mongoose';
 
-export const TaskSchema = new mongoose.Schema({
+export const FinishedSchema = new mongoose.Schema({
     body: String,
     created: String,
     finishBy: String, 
+    finishedOn: String,
 })
