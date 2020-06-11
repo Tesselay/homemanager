@@ -21,12 +21,12 @@ export class TaskController {
         return res.status(HttpStatus.OK).json(tasks);
     }
 
-    @Get("task/:taskID")
-    async getTask(@Res() res, @Param("taskID", new ValidateObjectId()) taskID) {
-        const task = await this.taskService.getTask(taskID);
-        if (!task) throw new NotFoundException("Task does not exist!");
-        return res.status(HttpStatus.OK).json(task);
-    }
+    // @Get("task/:taskID")
+    // async getTask(@Res() res, @Param("taskID", new ValidateObjectId()) taskID) {
+    //     const task = await this.taskService.getTask(taskID);
+    //     if (!task) throw new NotFoundException("Task does not exist!");
+    //     return res.status(HttpStatus.OK).json(task);
+    // }
 
     @Post("post")
     async addTask(@Res() res, @Body() createTaskDTO: CreateTaskDTO) {
@@ -37,19 +37,19 @@ export class TaskController {
         })
     }
 
-    @Put('edit/:taskID')
-    async editTask(
-        @Res() res,
-        @Param('taskID', new ValidateObjectId()) taskID,
-        @Body() createTaskDTO: CreateTaskDTO
-    ) {
-        const editedTask = await this.taskService.editTask(taskID, createTaskDTO);
-        if (!editedTask) throw new NotFoundException('Task does not exist!');
-        return res.status(HttpStatus.OK).json({
-            message: 'Task has been successfully updated',
-            task: editedTask
-        })
-    }
+    // @Put('edit/:taskID')
+    // async editTask(
+    //     @Res() res,
+    //     @Param('taskID', new ValidateObjectId()) taskID,
+    //     @Body() createTaskDTO: CreateTaskDTO
+    // ) {
+    //     const editedTask = await this.taskService.editTask(taskID, createTaskDTO);
+    //     if (!editedTask) throw new NotFoundException('Task does not exist!');
+    //     return res.status(HttpStatus.OK).json({
+    //         message: 'Task has been successfully updated',
+    //         task: editedTask
+    //     })
+    // }
 
     @Put('finish/:taskID')
     async finishTask(

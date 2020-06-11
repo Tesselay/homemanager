@@ -9,41 +9,41 @@ export class FinishedController {
 
     constructor(private finishedService: FinishedService) {}
 
-    @Get("")
-    async getFinisheds(@Res() res) {
-        const finisheds = await this.finishedService.getFinisheds();
-        return res.status(HttpStatus.OK).json(finisheds);
-    }
+    // @Get("")
+    // async getFinisheds(@Res() res) {
+    //     const finisheds = await this.finishedService.getFinisheds();
+    //     return res.status(HttpStatus.OK).json(finisheds);
+    // }
 
-    @Get(":finishedID")
-    async getFinished(@Res() res, @Param("finishedID", new ValidateObjectId()) finishedID) {
-        const finished = await this.finishedService.getFinished(finishedID);
-        if (!finished) throw new NotFoundException("Finished task does not exist!");
-        return res.status(HttpStatus.OK).json(finished);
-    }
+    // @Get(":finishedID")
+    // async getFinished(@Res() res, @Param("finishedID", new ValidateObjectId()) finishedID) {
+    //     const finished = await this.finishedService.getFinished(finishedID);
+    //     if (!finished) throw new NotFoundException("Finished task does not exist!");
+    //     return res.status(HttpStatus.OK).json(finished);
+    // }
 
-    @Post("post")
-    async addTask(@Res() res, @Body() createFinishedDTO: CreateFinishedDTO) {
-        const newFinished = await this.finishedService.addFinished(createFinishedDTO);
-        return res.status(HttpStatus.OK).json({
-            message: "Finished task has been submitted successfully!",
-            finished: newFinished
-        })
-    }
+    // @Post("post")
+    // async addTask(@Res() res, @Body() createFinishedDTO: CreateFinishedDTO) {
+    //     const newFinished = await this.finishedService.addFinished(createFinishedDTO);
+    //     return res.status(HttpStatus.OK).json({
+    //         message: "Finished task has been submitted successfully!",
+    //         finished: newFinished
+    //     })
+    // }
 
-    @Put('edit/:finishedID')
-    async editFinished(
-        @Res() res,
-        @Param('finishedID', new ValidateObjectId()) finishedID,
-        @Body() createFinishedDTO: CreateFinishedDTO
-    ) {
-        const editedFinished = await this.finishedService.editFinished(finishedID, createFinishedDTO);
-        if (!editedFinished) throw new NotFoundException('Finished task does not exist!');
-        return res.status(HttpStatus.OK).json({
-            message: 'Finished task has been successfully updated',
-            finished: editedFinished
-        })
-    }
+    // @Put('edit/:finishedID')
+    // async editFinished(
+    //     @Res() res,
+    //     @Param('finishedID', new ValidateObjectId()) finishedID,
+    //     @Body() createFinishedDTO: CreateFinishedDTO
+    // ) {
+    //     const editedFinished = await this.finishedService.editFinished(finishedID, createFinishedDTO);
+    //     if (!editedFinished) throw new NotFoundException('Finished task does not exist!');
+    //     return res.status(HttpStatus.OK).json({
+    //         message: 'Finished task has been successfully updated',
+    //         finished: editedFinished
+    //     })
+    // }
 
     @Delete('delete/:finishedID')
     async deleteFinished(@Res() res, @Param('finishedID', new ValidateObjectId()) finishedID) {

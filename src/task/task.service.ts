@@ -16,20 +16,20 @@ export class TaskService {
         return tasks;
     }
 
-    async getTask(taskId): Promise<Task> {
-        const task = await this.taskModel.findById(taskId).exec();
-        return task;
-    }
+    // async getTask(taskId): Promise<Task> {
+    //     const task = await this.taskModel.findById(taskId).exec();
+    //     return task;
+    // }
     
     async addTask(createTaskDTO: CreateTaskDTO): Promise<Task> {
         const newTask = await this.taskModel(createTaskDTO);
         return newTask.save();
     }
 
-    async editTask(taskId, createTaskDTO: CreateTaskDTO): Promise<Task> {
-        const updatedTask = await this.taskModel.findByIdAndUpdate(taskId, createTaskDTO, { new: true });
-        return updatedTask;
-    }
+    // async editTask(taskId, createTaskDTO: CreateTaskDTO): Promise<Task> {
+    //     const updatedTask = await this.taskModel.findByIdAndUpdate(taskId, createTaskDTO, { new: true });
+    //     return updatedTask;
+    // }
 
     async deleteTask(taskId): Promise<any> {
         const deletedTask = await this.taskModel.findByIdAndRemove(taskId);
