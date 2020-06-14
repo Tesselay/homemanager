@@ -1,5 +1,5 @@
 export class CreateTaskDTO {
-    readonly body: String;
-    readonly created: String;
-    readonly finishBy: String;
+  readonly body: String;
+  readonly created: String;
+  readonly finishBy: String;
 }
