@@ -12,10 +12,10 @@ export class FinishedService {
     @InjectModel('Finished') private readonly finishedModel: Model<Finished>,
   ) {}
 
-  // async getFinisheds(): Promise<Finished[]> {
-  //     const finisheds = await this.finishedModel.find().exec();
-  //     return finisheds;
-  // }
+  async getFinisheds(): Promise<Finished[]> {
+      const finisheds = await this.finishedModel.find().exec();
+      return finisheds;
+  }
 
   // async getFinished(finishedId): Promise<Finished> {
   //     const finished = await this.finishedModel.findById(finishedId).exec();

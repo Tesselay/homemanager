@@ -18,11 +18,11 @@ import { ValidateObjectId } from '../../shared/pipes/validate-object-id.pipes';
 export class FinishedController {
   constructor(private finishedService: FinishedService) {}
 
-  // @Get("")
-  // async getFinisheds(@Res() res) {
-  //     const finisheds = await this.finishedService.getFinisheds();
-  //     return res.status(HttpStatus.OK).json(finisheds);
-  // }
+  @Get("")
+  async getFinisheds(@Res() res) {
+      const finisheds = await this.finishedService.getFinisheds();
+      return res.status(HttpStatus.OK).json(finisheds);
+  }
 
   // @Get(":finishedID")
   // async getFinished(@Res() res, @Param("finishedID", new ValidateObjectId()) finishedID) {
